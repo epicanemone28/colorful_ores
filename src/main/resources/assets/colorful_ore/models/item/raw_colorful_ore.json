@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "colorful_ore:item/raw_colorful_ore"
+  }
+}

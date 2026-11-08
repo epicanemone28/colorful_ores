@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {"function": "colorful_ore:copy_tint_to_item"}
+          ],
+          "name": "colorful_ore:raw_colorful_ore"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "colorful_ore:blocks/colorful_ore"
+}
