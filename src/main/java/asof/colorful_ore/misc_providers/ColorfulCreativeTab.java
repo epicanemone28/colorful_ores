@@ -16,6 +16,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.awt.*;
 
 import static asof.colorful_ore.ColorfulOres.*;
+import static asof.colorful_ore.registries.RegisterItems.*;
 
 public class ColorfulCreativeTab {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ColorfulOres.MODID);
@@ -43,6 +44,7 @@ public class ColorfulCreativeTab {
     public static void getDisplayItems(CreativeModeTab.ItemDisplayParameters parameters, CreativeModeTab.Output output){
         addInAllColors(output, RAW_COLORFUL_ORE.get());
         addInAllColors(output, COLORFUL_INGOT.get());
+        addInAllColors(output, DEEPSLATE_COLORFUL_ORE_BLOCKITEM.get());
         addInAllColors(output, COLORFUL_ORE_BLOCKITEM.get());
         addInAllColors(output, COLORFUL_PLATE_BLOCKITEM.get());
         addInAllColors(output, COLORFUL_METAL_BLOCK_BLOCKITEM.get());

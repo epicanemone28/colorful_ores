@@ -1,0 +1,21 @@
+{
+  "type": "colorful_ore:color_mixing_shaped",
+  "category": "building",
+  "pattern": [
+    "aa",
+    "as",
+    " s"
+  ],
+  "key": {
+    "a": {
+      "item": "colorful_ore:colorful_ingot"
+    },
+    "s": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "id": "colorful_ore:colorful_axe",
+    "count": 1
+  }
+}

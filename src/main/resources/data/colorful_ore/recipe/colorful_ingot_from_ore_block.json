@@ -1,0 +1,10 @@
+{
+  "type": "colorful_ore:color_mixing_smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "colorful_ore:colorful_ore"
+  },
+  "result": {
+    "id": "colorful_ore:colorful_ingot"
+  }
+}

@@ -6,19 +6,20 @@ import asof.colorful_ore.misc_providers.ColorfulBlockLootFunction;
 import asof.colorful_ore.misc_providers.ColorfulCreativeTab;
 import asof.colorful_ore.recipes.RecipeSerializers;
 import asof.colorful_ore.recipes.RecipeTypes;
+import asof.colorful_ore.registries.RegisterItems;
+import asof.colorful_ore.worldgen.ColorfulOreFeature;
 import com.mojang.logging.LogUtils;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.neoforged.bus.api.IEventBus;
@@ -31,6 +32,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
@@ -49,12 +51,16 @@ public class ColorfulOres {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE,MODID);
     public static final DeferredRegister<LootItemFunctionType<?>> LOOT_FUNCTION_TYPES = DeferredRegister.create(Registries.LOOT_FUNCTION_TYPE,MODID);
+    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE,MODID);
 
     public static final DeferredBlock<Block> MIMICLAY = BLOCKS.registerBlock("mimiclay", ColorfulBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.CLAY)
     );
     public static final DeferredBlock<Block> COLORFUL_ORE = BLOCKS.registerBlock("colorful_ore", ColorfulBlock::new,
-            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).destroyTime(1.5f)
+            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).destroyTime(1.5f).requiresCorrectToolForDrops()
+    );
+    public static final DeferredBlock<Block> DEEPSLATE_COLORFUL_ORE = BLOCKS.registerBlock("deepslate_colorful_ore", ColorfulBlock::new,
+            BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).destroyTime(2.5f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)
     );
     public static final DeferredBlock<Block> COLORFUL_PLATE = BLOCKS.registerBlock("colorful_plate", ColorfulBlock::new,
             BlockBehaviour.Properties.of().mapColor(MapColor.STONE).destroyTime(0.75f).sound(SoundType.COPPER)
@@ -63,19 +69,14 @@ public class ColorfulOres {
             BlockBehaviour.Properties.of().mapColor(MapColor.STONE).destroyTime(2.5f).sound(SoundType.COPPER)
     );
 
-    // Creates a new food item with the id "colorful_ore:example_id", nutrition 1 and saturation 2
-    public static final DeferredItem<Item> RAW_COLORFUL_ORE = ITEMS.registerSimpleItem("raw_colorful_ore", new Item.Properties()
-        .component(DataComponents.DYED_COLOR, new DyedItemColor(Color.GRAY.getRGB(),false)
-    ));
-    public static final DeferredItem<Item> COLORFUL_INGOT = ITEMS.registerSimpleItem("colorful_ingot", new Item.Properties()
-        .component(DataComponents.DYED_COLOR, new DyedItemColor(Color.GRAY.getRGB(),false)
-    ));
-    public static final DeferredItem<Item> MIMICLAY_BALL = ITEMS.registerSimpleItem("mimiclay_ball", new Item.Properties());
-
+    public static final DeferredItem<BlockItem> DEEPSLATE_COLORFUL_ORE_BLOCKITEM = ITEMS.registerSimpleBlockItem("deepslate_colorful_ore", DEEPSLATE_COLORFUL_ORE);
     public static final DeferredItem<BlockItem> COLORFUL_ORE_BLOCKITEM = ITEMS.registerSimpleBlockItem("colorful_ore", COLORFUL_ORE);
     public static final DeferredItem<BlockItem> COLORFUL_PLATE_BLOCKITEM = ITEMS.registerSimpleBlockItem("colorful_plate", COLORFUL_PLATE);
     public static final DeferredItem<BlockItem> COLORFUL_METAL_BLOCK_BLOCKITEM = ITEMS.registerSimpleBlockItem("colorful_metal_block", COLORFUL_METAL_BLOCK);
     public static final DeferredItem<BlockItem> MIMICLAY_BLOCKITEM = ITEMS.registerSimpleBlockItem("mimiclay", MIMICLAY);
+
+    @SuppressWarnings({"UnusedDeclaration"})
+    public static final DeferredHolder<Feature<?>, ?> COLORFUL_ORE_FEATURE = FEATURES.register("colorful_ore_feature", ()->new ColorfulOreFeature(OreConfiguration.CODEC));
 
     @SuppressWarnings("DataFlowIssue")
     public static final Supplier<BlockEntityType<ColorfulBlockEntity>> COLORFUL_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register(
@@ -104,10 +105,12 @@ public class ColorfulOres {
         ITEMS.register(modEventBus);
         BLOCK_ENTITY_TYPES.register(modEventBus);
         LOOT_FUNCTION_TYPES.register(modEventBus);
+        FEATURES.register(modEventBus);
 
         RecipeTypes.register(modEventBus);
         RecipeSerializers.register(modEventBus);
         ColorfulCreativeTab.register(modEventBus);
+        RegisterItems.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ColorfulOres) to respond directly to events.

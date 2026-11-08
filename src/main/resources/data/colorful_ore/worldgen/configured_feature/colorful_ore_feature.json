@@ -1,0 +1,27 @@
+{
+  "type": "colorful_ore:colorful_ore_feature",
+  "config": {
+    "discard_chance_on_air_exposure": 0,
+    "size": 10,
+    "targets": [
+      {
+        "state": {
+          "Name": "colorful_ore:colorful_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:stone_ore_replaceables"
+        }
+      },
+      {
+        "state": {
+          "Name": "colorful_ore:deepslate_colorful_ore"
+        },
+        "target": {
+          "predicate_type": "minecraft:tag_match",
+          "tag": "minecraft:deepslate_ore_replaceables"
+        }
+      }
+    ]
+  }
+}
