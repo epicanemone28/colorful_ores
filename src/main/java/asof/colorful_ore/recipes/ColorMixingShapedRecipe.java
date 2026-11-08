@@ -24,7 +24,7 @@ public class ColorMixingShapedRecipe extends ShapedRecipe {
     @Override
     @ParametersAreNonnullByDefault
     public @NotNull ItemStack assemble(CraftingInput input, HolderLookup.Provider lookup) {
-        ItemStack item = this.getResultItem(lookup);
+        ItemStack item = this.getResultItem(lookup).copy();
         int r = 0;
         int g = 0;
         int b = 0;
@@ -50,18 +50,18 @@ public class ColorMixingShapedRecipe extends ShapedRecipe {
     }
 
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return RecipeSerializers.COLOR_MIXING_SHAPED.get();
     }
 
     public static class Serializer implements RecipeSerializer<ColorMixingShapedRecipe> {
         public static final MapCodec<ColorMixingShapedRecipe> CODEC = RecordCodecBuilder.mapCodec(
                 p_340778_ -> p_340778_.group(
-                                Codec.STRING.optionalFieldOf("group", "").forGetter(p_311729_ -> p_311729_.getGroup()),
-                                CraftingBookCategory.CODEC.fieldOf("category").orElse(CraftingBookCategory.MISC).forGetter(p_311732_ -> p_311732_.category()),
-                                ShapedRecipePattern.MAP_CODEC.forGetter(p_311733_ -> p_311733_.pattern),
-                                ItemStack.STRICT_CODEC.fieldOf("result").forGetter(p_311730_ -> p_311730_.result),
-                                Codec.BOOL.optionalFieldOf("show_notification", Boolean.valueOf(true)).forGetter(p_311731_ -> p_311731_.showNotification())
+                                Codec.STRING.optionalFieldOf("group", "").forGetter(ColorMixingShapedRecipe::getGroup),
+                                CraftingBookCategory.CODEC.fieldOf("category").orElse(CraftingBookCategory.MISC).forGetter(ColorMixingShapedRecipe::category),
+                                ShapedRecipePattern.MAP_CODEC.forGetter(r -> r.pattern),
+                                ItemStack.STRICT_CODEC.fieldOf("result").forGetter(r -> r.result),
+                                Codec.BOOL.optionalFieldOf("show_notification", Boolean.TRUE).forGetter(ColorMixingShapedRecipe::showNotification)
                         )
                         .apply(p_340778_, ColorMixingShapedRecipe::new)
         );
@@ -70,12 +70,12 @@ public class ColorMixingShapedRecipe extends ShapedRecipe {
         );
 
         @Override
-        public MapCodec<ColorMixingShapedRecipe> codec() {
+        public @NotNull MapCodec<ColorMixingShapedRecipe> codec() {
             return CODEC;
         }
 
         @Override
-        public StreamCodec<RegistryFriendlyByteBuf, ColorMixingShapedRecipe> streamCodec() {
+        public @NotNull StreamCodec<RegistryFriendlyByteBuf, ColorMixingShapedRecipe> streamCodec() {
             return STREAM_CODEC;
         }
 

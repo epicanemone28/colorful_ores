@@ -2,20 +2,15 @@ package asof.colorful_ore;
 
 import asof.colorful_ore.blocks.ColorfulBlock;
 import asof.colorful_ore.blocks.ColorfulBlockEntity;
-import asof.colorful_ore.datagen.ColorfulBlockStateProvider;
 import asof.colorful_ore.misc_providers.ColorfulBlockLootFunction;
+import asof.colorful_ore.misc_providers.ColorfulCreativeTab;
 import asof.colorful_ore.recipes.RecipeSerializers;
 import asof.colorful_ore.recipes.RecipeTypes;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
-import net.minecraft.network.chat.Component;
-import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.DyedItemColor;
@@ -33,18 +28,14 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
 
 import java.awt.*;
-import java.util.HashSet;
 import java.util.function.Supplier;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
@@ -56,7 +47,6 @@ public class ColorfulOres {
     private static final Logger LOGGER = LogUtils.getLogger();
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
-    public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE,MODID);
     public static final DeferredRegister<LootItemFunctionType<?>> LOOT_FUNCTION_TYPES = DeferredRegister.create(Registries.LOOT_FUNCTION_TYPE,MODID);
 
@@ -87,6 +77,7 @@ public class ColorfulOres {
     public static final DeferredItem<BlockItem> COLORFUL_METAL_BLOCK_BLOCKITEM = ITEMS.registerSimpleBlockItem("colorful_metal_block", COLORFUL_METAL_BLOCK);
     public static final DeferredItem<BlockItem> MIMICLAY_BLOCKITEM = ITEMS.registerSimpleBlockItem("mimiclay", MIMICLAY);
 
+    @SuppressWarnings("DataFlowIssue")
     public static final Supplier<BlockEntityType<ColorfulBlockEntity>> COLORFUL_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register(
             "colorful_block_entity",
             // The block entity type.
@@ -96,20 +87,12 @@ public class ColorfulOres {
             ).build(null)
     );
 
+    @SuppressWarnings({"UnusedDeclaration"})
     public static final Supplier<LootItemFunctionType<ColorfulBlockLootFunction>> COPY_TINT_TO_ITEM =
-            LOOT_FUNCTION_TYPES.register("copy_tint_to_item", () -> new LootItemFunctionType(ColorfulBlockLootFunction.CODEC));
+            LOOT_FUNCTION_TYPES.register("copy_tint_to_item", () -> new LootItemFunctionType<>(ColorfulBlockLootFunction.CODEC));
 
 
-    // Creates a creative tab with the id "colorful_ore:example_tab" for the example item, that is placed after the combat tab
-        public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("colorful_ore", () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.colorful_ore")).withTabsBefore(CreativeModeTabs.COMBAT).icon(() -> COLORFUL_INGOT.get().getDefaultInstance()).displayItems((parameters, output) -> {
-            output.accept(RAW_COLORFUL_ORE.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
-            output.accept(COLORFUL_INGOT.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
-            output.accept(COLORFUL_ORE_BLOCKITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
-            output.accept(COLORFUL_PLATE_BLOCKITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
-            output.accept(COLORFUL_METAL_BLOCK_BLOCKITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
-            output.accept(MIMICLAY_BALL.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
-            output.accept(MIMICLAY_BLOCKITEM.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
-    }).build());
+
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
@@ -119,12 +102,12 @@ public class ColorfulOres {
 
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
-        CREATIVE_MODE_TABS.register(modEventBus);
         BLOCK_ENTITY_TYPES.register(modEventBus);
         LOOT_FUNCTION_TYPES.register(modEventBus);
 
         RecipeTypes.register(modEventBus);
         RecipeSerializers.register(modEventBus);
+        ColorfulCreativeTab.register(modEventBus);
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ColorfulOres) to respond directly to events.

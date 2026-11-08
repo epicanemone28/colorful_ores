@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "pattern": [
+    "m"
+  ],
+  "key": {
+    "m": {
+      "item": "colorful_ore:mimiclay"
+    }
+  },
+  "result": {
+    "id": "colorful_ore:mimiclay_ball",
+    "count": 4
+  }
+}
