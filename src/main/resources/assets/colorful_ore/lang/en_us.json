@@ -12,6 +12,14 @@
   "item.colorful_ore.raw_colorful_ore": "Raw Colorful Ore",
   "item.colorful_ore.colorful_ingot": "Colorful Ingot",
 
+  "item.colorful_ore.colorful_helmet": "Colorful Helmet",
+  "item.colorful_ore.colorful_chestplate": "Colorful Chestplate",
+  "item.colorful_ore.colorful_leggings": "Colorful Leggings",
+  "item.colorful_ore.colorful_boots": "Colorful Boots",
+
   "item.colorful_ore.colorful_pickaxe": "Colorful Pickaxe",
+  "item.colorful_ore.colorful_shovel": "Colorful Shovel",
+  "item.colorful_ore.colorful_sword": "Colorful Sword",
+  "item.colorful_ore.colorful_hoe": "Colorful Hoe",
   "item.colorful_ore.colorful_axe": "Colorful Axe"
 }

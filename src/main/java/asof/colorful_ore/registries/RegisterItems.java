@@ -3,6 +3,7 @@ package asof.colorful_ore.registries;
 import asof.colorful_ore.ColorfulOres;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.DyedItemColor;
@@ -14,6 +15,8 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.awt.*;
 import java.util.ArrayList;
+
+import static asof.colorful_ore.misc_providers.ColorfulBlockTintProvider.tintableItems;
 
 public class RegisterItems {
 
@@ -33,18 +36,14 @@ public class RegisterItems {
             ));
     public static final DeferredItem<Item> MIMICLAY_BALL = ITEMS.registerSimpleItem("mimiclay_ball", new Item.Properties());
 
-
-
-    public static final DeferredItem<Item> COLORFUL_PICKAXE = ITEMS.registerSimpleItem("colorful_pickaxe", new Item.Properties()
-        .component(DataComponents.DYED_COLOR, new DyedItemColor(Color.GRAY.getRGB(),true))
-        .component(DataComponents.TOOL,new Tool(createMiningRule(BlockTags.MINEABLE_WITH_PICKAXE),1.0f,1))
-    );
-    public static final DeferredItem<Item> COLORFUL_AXE = ITEMS.registerSimpleItem("colorful_axe", new Item.Properties()
-        .component(DataComponents.DYED_COLOR, new DyedItemColor(Color.GRAY.getRGB(),true))
-        .component(DataComponents.TOOL,new Tool(createMiningRule(BlockTags.MINEABLE_WITH_AXE),1.0f,1))
-    );
+    static {
+        tintableItems.add(RAW_COLORFUL_ORE);
+        tintableItems.add(COLORFUL_INGOT);
+    }
 
     public static void register(IEventBus eventBus){
         ITEMS.register(eventBus);
+        RegisterArmorItems.register(eventBus);
+        RegisterToolItems.register(eventBus);
     }
 }

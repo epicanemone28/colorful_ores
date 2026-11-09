@@ -5,7 +5,7 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 
-import static asof.colorful_ore.registries.RegisterItems.COLORFUL_PICKAXE;
+import static asof.colorful_ore.registries.RegisterToolItems.COLORFUL_PICKAXE;
 
 @SuppressWarnings({"UnusedDeclaration"})
 public class ColorfulItemModelProvider extends ItemModelProvider {

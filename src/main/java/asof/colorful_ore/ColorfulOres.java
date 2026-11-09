@@ -6,6 +6,7 @@ import asof.colorful_ore.misc_providers.ColorfulBlockLootFunction;
 import asof.colorful_ore.misc_providers.ColorfulCreativeTab;
 import asof.colorful_ore.recipes.RecipeSerializers;
 import asof.colorful_ore.recipes.RecipeTypes;
+import asof.colorful_ore.registries.RegisterBlocks;
 import asof.colorful_ore.registries.RegisterItems;
 import asof.colorful_ore.worldgen.ColorfulOreFeature;
 import com.mojang.logging.LogUtils;
@@ -37,8 +38,9 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
 
-import java.awt.*;
 import java.util.function.Supplier;
+
+import static asof.colorful_ore.registries.RegisterBlocks.COLORFUL_ORE_BLOCKITEM;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(ColorfulOres.MODID)
@@ -47,33 +49,9 @@ public class ColorfulOres {
     public static final String MODID = "colorful_ore";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE,MODID);
     public static final DeferredRegister<LootItemFunctionType<?>> LOOT_FUNCTION_TYPES = DeferredRegister.create(Registries.LOOT_FUNCTION_TYPE,MODID);
     public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE,MODID);
-
-    public static final DeferredBlock<Block> MIMICLAY = BLOCKS.registerBlock("mimiclay", ColorfulBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.CLAY)
-    );
-    public static final DeferredBlock<Block> COLORFUL_ORE = BLOCKS.registerBlock("colorful_ore", ColorfulBlock::new,
-            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).destroyTime(1.5f).requiresCorrectToolForDrops()
-    );
-    public static final DeferredBlock<Block> DEEPSLATE_COLORFUL_ORE = BLOCKS.registerBlock("deepslate_colorful_ore", ColorfulBlock::new,
-            BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).destroyTime(2.5f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)
-    );
-    public static final DeferredBlock<Block> COLORFUL_PLATE = BLOCKS.registerBlock("colorful_plate", ColorfulBlock::new,
-            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).destroyTime(0.75f).sound(SoundType.COPPER)
-    );
-    public static final DeferredBlock<Block> COLORFUL_METAL_BLOCK = BLOCKS.registerBlock("colorful_metal_block", ColorfulBlock::new,
-            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).destroyTime(2.5f).sound(SoundType.COPPER)
-    );
-
-    public static final DeferredItem<BlockItem> DEEPSLATE_COLORFUL_ORE_BLOCKITEM = ITEMS.registerSimpleBlockItem("deepslate_colorful_ore", DEEPSLATE_COLORFUL_ORE);
-    public static final DeferredItem<BlockItem> COLORFUL_ORE_BLOCKITEM = ITEMS.registerSimpleBlockItem("colorful_ore", COLORFUL_ORE);
-    public static final DeferredItem<BlockItem> COLORFUL_PLATE_BLOCKITEM = ITEMS.registerSimpleBlockItem("colorful_plate", COLORFUL_PLATE);
-    public static final DeferredItem<BlockItem> COLORFUL_METAL_BLOCK_BLOCKITEM = ITEMS.registerSimpleBlockItem("colorful_metal_block", COLORFUL_METAL_BLOCK);
-    public static final DeferredItem<BlockItem> MIMICLAY_BLOCKITEM = ITEMS.registerSimpleBlockItem("mimiclay", MIMICLAY);
 
     @SuppressWarnings({"UnusedDeclaration"})
     public static final DeferredHolder<Feature<?>, ?> COLORFUL_ORE_FEATURE = FEATURES.register("colorful_ore_feature", ()->new ColorfulOreFeature(OreConfiguration.CODEC));
@@ -101,12 +79,11 @@ public class ColorfulOres {
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
 
-        BLOCKS.register(modEventBus);
-        ITEMS.register(modEventBus);
         BLOCK_ENTITY_TYPES.register(modEventBus);
         LOOT_FUNCTION_TYPES.register(modEventBus);
         FEATURES.register(modEventBus);
 
+        RegisterBlocks.register(modEventBus);
         RecipeTypes.register(modEventBus);
         RecipeSerializers.register(modEventBus);
         ColorfulCreativeTab.register(modEventBus);
@@ -137,7 +114,7 @@ public class ColorfulOres {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) event.accept(COLORFUL_ORE_BLOCKITEM.get());
+        //if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) event.accept(COLORFUL_ORE_BLOCKITEM.get());
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
