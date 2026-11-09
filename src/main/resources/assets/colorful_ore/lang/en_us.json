@@ -5,9 +5,13 @@
   "item.colorful_ore.mimiclay_ball": "Mimiclay Ball",
 
   "block.colorful_ore.colorful_ore": "Colorful Ore",
+  "block.colorful_ore.deepslate_colorful_ore": "Deepslate Colorful Ore",
   "block.colorful_ore.colorful_plate": "Colorful Plate",
   "block.colorful_ore.colorful_metal_block": "Colorful Metal Block",
 
   "item.colorful_ore.raw_colorful_ore": "Raw Colorful Ore",
-  "item.colorful_ore.colorful_ingot": "Colorful Ingot"
+  "item.colorful_ore.colorful_ingot": "Colorful Ingot",
+
+  "item.colorful_ore.colorful_pickaxe": "Colorful Pickaxe",
+  "item.colorful_ore.colorful_axe": "Colorful Axe"
 }

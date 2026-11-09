@@ -40,7 +40,7 @@ public class ColorfulBlockTintProvider {
             return color.rgb();
         },
         COLORFUL_PICKAXE.get(), COLORFUL_AXE.get(),
-        COLORFUL_ORE.get(), COLORFUL_PLATE.get(), COLORFUL_METAL_BLOCK.get(),
+        COLORFUL_ORE.get(), DEEPSLATE_COLORFUL_ORE.get(), COLORFUL_PLATE.get(), COLORFUL_METAL_BLOCK.get(),
         RAW_COLORFUL_ORE.get(), COLORFUL_INGOT.get()
     );
     }
