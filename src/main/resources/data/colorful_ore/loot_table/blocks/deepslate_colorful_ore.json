@@ -56,5 +56,5 @@
       "rolls": 1
     }
   ],
-  "random_sequence": "minecraft:blocks/iron_ore"
+  "random_sequence": "colorful_ore:blocks/deepslate_colorful_ore"
 }

@@ -29,7 +29,10 @@ public class RegisterBlocks {
             BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).destroyTime(2.5f).requiresCorrectToolForDrops().sound(SoundType.DEEPSLATE)
     );
     public static final DeferredBlock<Block> COLORFUL_PLATE = BLOCKS.registerBlock("colorful_plate", ColorfulBlock::new,
-            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).destroyTime(0.75f).sound(SoundType.COPPER)
+            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).destroyTime(0.75f).sound(SoundType.COPPER).explosionResistance(8)
+    );
+    public static final DeferredBlock<Block> COLORFUL_STURDY_PLATE = BLOCKS.registerBlock("colorful_sturdy_plate", ColorfulBlock::new,
+            BlockBehaviour.Properties.of().mapColor(MapColor.STONE).destroyTime(1.75f).sound(SoundType.COPPER).explosionResistance(20)
     );
     public static final DeferredBlock<Block> COLORFUL_METAL_BLOCK = BLOCKS.registerBlock("colorful_metal_block", ColorfulBlock::new,
             BlockBehaviour.Properties.of().mapColor(MapColor.STONE).destroyTime(2.5f).sound(SoundType.COPPER)
@@ -38,6 +41,7 @@ public class RegisterBlocks {
     public static final DeferredItem<BlockItem> DEEPSLATE_COLORFUL_ORE_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("deepslate_colorful_ore", DEEPSLATE_COLORFUL_ORE);
     public static final DeferredItem<BlockItem> COLORFUL_ORE_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("colorful_ore", COLORFUL_ORE);
     public static final DeferredItem<BlockItem> COLORFUL_PLATE_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("colorful_plate", COLORFUL_PLATE);
+    public static final DeferredItem<BlockItem> COLORFUL_STURDY_PLATE_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("colorful_sturdy_plate", COLORFUL_STURDY_PLATE);
     public static final DeferredItem<BlockItem> COLORFUL_METAL_BLOCK_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("colorful_metal_block", COLORFUL_METAL_BLOCK);
     public static final DeferredItem<BlockItem> MIMICLAY_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("mimiclay", MIMICLAY);
 
@@ -45,6 +49,7 @@ public class RegisterBlocks {
         tintableItems.add(COLORFUL_ORE);
         tintableItems.add(DEEPSLATE_COLORFUL_ORE);
         tintableItems.add(COLORFUL_PLATE);
+        tintableItems.add(COLORFUL_STURDY_PLATE);
         tintableItems.add(COLORFUL_METAL_BLOCK);
     }
 
