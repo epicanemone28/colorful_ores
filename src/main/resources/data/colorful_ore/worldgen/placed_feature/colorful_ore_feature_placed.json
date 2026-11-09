@@ -2,6 +2,10 @@
   "feature": "colorful_ore:colorful_ore_feature",
   "placement": [
     {
+      "type": "colorful_ore:config_placement_filter",
+      "config_flag": "colorful_ore:colorful_ores"
+    },
+    {
       "type": "minecraft:count",
       "count": 16
     },

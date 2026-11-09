@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-import static asof.colorful_ore.recipes.RecipeSerializers.COLOR_MIXING_SMELTING;
+import static asof.colorful_ore.registries.RegisterRecipeSerializers.COLOR_MIXING_SMELTING;
 
 public class ColorMixingSmeltingRecipe extends SmeltingRecipe {
 

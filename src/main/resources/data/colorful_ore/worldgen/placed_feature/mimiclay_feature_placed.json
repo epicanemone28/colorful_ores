@@ -2,6 +2,10 @@
   "feature": "colorful_ore:mimiclay_feature",
   "placement": [
     {
+      "type": "colorful_ore:config_placement_filter",
+      "config_flag": "colorful_ore:mimiclay"
+    },
+    {
       "type": "minecraft:count",
       "count": 3
     },

@@ -4,19 +4,15 @@ import asof.colorful_ore.blocks.ColorfulBlock;
 import asof.colorful_ore.blocks.ColorfulBlockEntity;
 import asof.colorful_ore.misc_providers.ColorfulBlockLootFunction;
 import asof.colorful_ore.misc_providers.ColorfulCreativeTab;
-import asof.colorful_ore.recipes.RecipeSerializers;
-import asof.colorful_ore.recipes.RecipeTypes;
+import asof.colorful_ore.registries.RegisterRecipeSerializers;
+import asof.colorful_ore.registries.RegisterRecipeTypes;
 import asof.colorful_ore.registries.RegisterBlocks;
 import asof.colorful_ore.registries.RegisterItems;
-import asof.colorful_ore.worldgen.ColorfulOreFeature;
+import asof.colorful_ore.registries.RegisterMiscWorldgen;
 import com.mojang.logging.LogUtils;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -27,7 +23,6 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
 
@@ -42,10 +37,7 @@ public class ColorfulOres {
     private static final Logger LOGGER = LogUtils.getLogger();
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE,MODID);
     public static final DeferredRegister<LootItemFunctionType<?>> LOOT_FUNCTION_TYPES = DeferredRegister.create(Registries.LOOT_FUNCTION_TYPE,MODID);
-    public static final DeferredRegister<Feature<?>> FEATURES = DeferredRegister.create(Registries.FEATURE,MODID);
 
-    @SuppressWarnings({"UnusedDeclaration"})
-    public static final DeferredHolder<Feature<?>, ?> COLORFUL_ORE_FEATURE = FEATURES.register("colorful_ore_feature", ()->new ColorfulOreFeature(OreConfiguration.CODEC));
 
     @SuppressWarnings("DataFlowIssue")
     public static final Supplier<BlockEntityType<ColorfulBlockEntity>> COLORFUL_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register(
@@ -72,11 +64,11 @@ public class ColorfulOres {
 
         BLOCK_ENTITY_TYPES.register(modEventBus);
         LOOT_FUNCTION_TYPES.register(modEventBus);
-        FEATURES.register(modEventBus);
 
+        RegisterMiscWorldgen.register(modEventBus);
         RegisterBlocks.register(modEventBus);
-        RecipeTypes.register(modEventBus);
-        RecipeSerializers.register(modEventBus);
+        RegisterRecipeTypes.register(modEventBus);
+        RegisterRecipeSerializers.register(modEventBus);
         ColorfulCreativeTab.register(modEventBus);
         RegisterItems.register(modEventBus);
 
@@ -96,11 +88,10 @@ public class ColorfulOres {
         // Some common setup code
         LOGGER.info("HELLO FROM COMMON SETUP");
 
-        if (Config.logDirtBlock) LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
-
         LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
 
-        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
+        Config.forciblyUnreplicableItems.forEach((item) -> LOGGER.info("BLACKLISTED ITEM >> {}", item.toString()));
+        Config.forciblyReplicatableItems.forEach((item) -> LOGGER.info("WHITELISTED ITEM >> {}", item.toString()));
     }
 
     // Add the example block item to the building blocks tab

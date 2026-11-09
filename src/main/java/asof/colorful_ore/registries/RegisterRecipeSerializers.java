@@ -1,6 +1,8 @@
-package asof.colorful_ore.recipes;
+package asof.colorful_ore.registries;
 
 import asof.colorful_ore.ColorfulOres;
+import asof.colorful_ore.recipes.ColorMixingShapedRecipe;
+import asof.colorful_ore.recipes.ColorMixingSmeltingRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.*;
 import net.neoforged.bus.api.IEventBus;
@@ -8,7 +10,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
-public class RecipeSerializers {
+public class RegisterRecipeSerializers {
     public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(Registries.RECIPE_SERIALIZER, ColorfulOres.MODID);
 
     public static final Supplier<RecipeSerializer<?>> COLOR_MIXING_SHAPED =

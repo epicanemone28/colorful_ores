@@ -1,5 +1,6 @@
 package asof.colorful_ore.recipes;
 
+import asof.colorful_ore.registries.RegisterRecipeSerializers;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
@@ -51,7 +52,7 @@ public class ColorMixingShapedRecipe extends ShapedRecipe {
 
     @Override
     public @NotNull RecipeSerializer<?> getSerializer() {
-        return RecipeSerializers.COLOR_MIXING_SHAPED.get();
+        return RegisterRecipeSerializers.COLOR_MIXING_SHAPED.get();
     }
 
     public static class Serializer implements RecipeSerializer<ColorMixingShapedRecipe> {

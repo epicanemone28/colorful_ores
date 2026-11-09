@@ -1,6 +1,8 @@
-package asof.colorful_ore.recipes;
+package asof.colorful_ore.registries;
 
 import asof.colorful_ore.ColorfulOres;
+import asof.colorful_ore.recipes.ColorMixingShapedRecipe;
+import asof.colorful_ore.recipes.ColorMixingSmeltingRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -9,7 +11,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
 
-public class RecipeTypes {
+public class RegisterRecipeTypes {
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(Registries.RECIPE_TYPE, ColorfulOres.MODID);
 
     @SuppressWarnings({"UnusedDeclaration"})

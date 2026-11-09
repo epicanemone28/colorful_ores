@@ -19,7 +19,7 @@ public class RegisterBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(ColorfulOres.MODID);
     public static final DeferredRegister.Items BLOCK_ITEMS = DeferredRegister.createItems(ColorfulOres.MODID);
 
-    public static final DeferredBlock<Block> MIMICLAY = BLOCKS.registerBlock("mimiclay", ColorfulBlock::new,
+    public static final DeferredBlock<Block> MIMICLAY = BLOCKS.registerBlock("mimiclay", Block::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.CLAY)
     );
     public static final DeferredBlock<Block> COLORFUL_ORE = BLOCKS.registerBlock("colorful_ore", ColorfulBlock::new,
