@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "ingredient": {
+    "item": "colorful_ore:mimiclay_ball"
+  },
+  "result": {
+    "id": "minecraft:brick"
+  }
+}
