@@ -53,7 +53,7 @@ public class ColorfulBlock extends Block implements EntityBlock {
         BlockEntity be = level.getBlockEntity(pos);
         if(be == null) return item;
         int color = ((ColorfulBlockEntity) be).getTint();
-        item.set(DataComponents.DYED_COLOR,new DyedItemColor(color,true));
+        item.set(DataComponents.DYED_COLOR,new DyedItemColor(color,false));
         return item;
     }
 }

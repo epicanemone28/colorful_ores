@@ -1,10 +1,10 @@
 package asof.colorful_ore.misc_providers;
 
+import asof.colorful_ore.ColorfulOres;
 import asof.colorful_ore.blocks.ColorfulBlockEntity;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.util.FastColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -13,6 +13,7 @@ import net.minecraft.world.level.storage.loot.functions.LootItemConditionalFunct
 import net.minecraft.world.level.storage.loot.functions.LootItemFunctionType;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -30,15 +31,15 @@ public class ColorfulBlockLootFunction extends LootItemConditionalFunction {
     }
 
     @Override
-    public LootItemFunctionType<? extends LootItemConditionalFunction> getType() {
-        return null;
+    public @NotNull LootItemFunctionType<? extends LootItemConditionalFunction> getType() {
+        return ColorfulOres.COPY_TINT_TO_ITEM.get();
     }
 
     @Override
-    public ItemStack run(ItemStack stack, LootContext context) {
+    public @NotNull ItemStack run(ItemStack stack, LootContext context) {
         BlockEntity be = context.getParam(LootContextParams.BLOCK_ENTITY);
         int rgb = ((ColorfulBlockEntity) be).rgb;
-        stack.set(DataComponents.DYED_COLOR, new DyedItemColor(FastColor.ARGB32.opaque(rgb),true));
+        stack.set(DataComponents.DYED_COLOR, new DyedItemColor(rgb,false));
         return stack;
     }
 }

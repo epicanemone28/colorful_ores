@@ -3,6 +3,7 @@ package asof.colorful_ore.misc_providers;
 import asof.colorful_ore.blocks.ColorfulBlock;
 import asof.colorful_ore.blocks.ColorfulBlockEntity;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.util.FastColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.ItemLike;
@@ -15,10 +16,6 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.ServiceLoader;
-
-import static asof.colorful_ore.ColorfulOres.*;
-import static asof.colorful_ore.registries.RegisterItems.*;
 
 @EventBusSubscriber
 public class ColorfulBlockTintProvider {
@@ -36,6 +33,12 @@ public class ColorfulBlockTintProvider {
     }
 
     static public final ArrayList<DeferredHolder<? extends ItemLike,? extends ItemLike>> tintableItems = new ArrayList<>();
+    private static final ArrayList<Item> tintedItemsCached = new ArrayList<>();
+
+    public static boolean itemHasTint(ItemLike item) {
+        if(tintedItemsCached.isEmpty()) tintedItemsCached.addAll(tintableItems.stream().map(i->i.get().asItem()).toList());
+        return tintedItemsCached.contains(item.asItem());
+    }
 
     @SubscribeEvent
     public static void registerItemColorHandlers(RegisterColorHandlersEvent.Item event) {
@@ -44,7 +47,7 @@ public class ColorfulBlockTintProvider {
 
             DyedItemColor color = stack.getComponents().get(DataComponents.DYED_COLOR);
             if(color == null) return Color.RED.getRGB();
-            return color.rgb();
+            return FastColor.ARGB32.opaque(color.rgb());
         },
         tintableItems.stream().map(DeferredHolder::get).toArray(ItemLike[]::new)
     );
