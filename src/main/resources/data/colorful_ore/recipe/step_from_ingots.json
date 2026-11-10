@@ -1,0 +1,16 @@
+{
+  "type": "colorful_ore:color_mixing_shaped",
+  "category": "building",
+  "pattern": [
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "colorful_ore:colorful_ingot"
+    }
+  },
+  "result": {
+    "id": "colorful_ore:colorful_step",
+    "count": 2
+  }
+}

@@ -1,7 +1,7 @@
 package asof.colorful_ore.misc_providers;
 
-import asof.colorful_ore.blocks.ColorfulBlock;
 import asof.colorful_ore.blocks.ColorfulBlockEntity;
+import asof.colorful_ore.blocks.ColorfulBlockHelper;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.util.FastColor;
 import net.minecraft.world.item.Item;
@@ -29,7 +29,7 @@ public class ColorfulBlockTintProvider {
             BlockEntity be = level.getBlockEntity(pos);
             if(be == null) return Color.RED.getRGB();
             return ((ColorfulBlockEntity) be).getTint();
-        },ColorfulBlock.allColorfulBlocks.toArray(Block[]::new));
+        }, ColorfulBlockHelper.allColorfulBlocks.toArray(Block[]::new));
     }
 
     static public final ArrayList<DeferredHolder<? extends ItemLike,? extends ItemLike>> tintableItems = new ArrayList<>();

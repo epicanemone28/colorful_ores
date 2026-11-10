@@ -60,6 +60,7 @@ public class ColorfulCreativeTab {
         addInAllColors(output, RAW_COLORFUL_ORE.get());
         addInAllColors(output, COLORFUL_INGOT.get());
         addInAllColors(output, COLORFUL_PLATE_BLOCKITEM.get());
+        addInAllColors(output, COLORFUL_STEP_BLOCKITEM.get());
         addInAllColors(output, COLORFUL_STURDY_PLATE_BLOCKITEM.get());
         addInAllColors(output, COLORFUL_METAL_BLOCK_BLOCKITEM.get());
         addInAllColors(output, COLORFUL_ORE_BLOCKITEM.get());

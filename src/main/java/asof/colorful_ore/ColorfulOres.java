@@ -1,7 +1,7 @@
 package asof.colorful_ore;
 
-import asof.colorful_ore.blocks.ColorfulBlock;
 import asof.colorful_ore.blocks.ColorfulBlockEntity;
+import asof.colorful_ore.blocks.ColorfulBlockHelper;
 import asof.colorful_ore.misc_providers.ColorfulBlockLootFunction;
 import asof.colorful_ore.misc_providers.ColorfulCreativeTab;
 import asof.colorful_ore.registries.*;
@@ -45,7 +45,7 @@ public class ColorfulOres {
             // The block entity type.
             () -> BlockEntityType.Builder.of(
                     ColorfulBlockEntity::new,
-                    ColorfulBlock.allColorfulBlocks.toArray(Block[]::new)
+                    ColorfulBlockHelper.allColorfulBlocks.toArray(Block[]::new)
             ).build(null)
     );
 

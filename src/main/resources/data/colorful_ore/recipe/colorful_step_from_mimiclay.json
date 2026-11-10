@@ -1,0 +1,21 @@
+{
+  "type": "colorful_ore:color_mixing_shaped",
+  "category": "building",
+  "pattern": [
+    " m ",
+    "mam",
+    " m "
+  ],
+  "key": {
+    "a": {
+      "item": "colorful_ore:colorful_step"
+    },
+    "m": {
+      "item": "colorful_ore:mimiclay_ball"
+    }
+  },
+  "result": {
+    "id": "colorful_ore:colorful_step",
+    "count": 2
+  }
+}
