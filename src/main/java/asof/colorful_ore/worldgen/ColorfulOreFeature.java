@@ -2,9 +2,6 @@ package asof.colorful_ore.worldgen;
 
 import asof.colorful_ore.blocks.ColorfulBlockEntity;
 import com.mojang.serialization.Codec;
-
-import java.util.BitSet;
-import java.util.function.Function;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
 import net.minecraft.util.FastColor;
@@ -19,6 +16,9 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.FeaturePlaceContext;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration.TargetBlockState;
+
+import java.util.BitSet;
+import java.util.function.Function;
 
 // applies a random color to a blob of ore blocks in the area.
 public class ColorfulOreFeature extends Feature<OreConfiguration> {

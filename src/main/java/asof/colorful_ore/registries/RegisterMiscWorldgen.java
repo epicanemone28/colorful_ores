@@ -1,8 +1,8 @@
 package asof.colorful_ore.registries;
 
 import asof.colorful_ore.ColorfulOres;
-import asof.colorful_ore.worldgen.ConfigPlacementFilter;
 import asof.colorful_ore.worldgen.ColorfulOreFeature;
+import asof.colorful_ore.worldgen.ConfigPlacementFilter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
