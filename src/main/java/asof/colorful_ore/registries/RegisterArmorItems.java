@@ -2,15 +2,17 @@ package asof.colorful_ore.registries;
 
 // ARMOR_MATERIALS is a DeferredRegister<ArmorMaterial>
 
-import asof.colorful_ore.ColorfulOres;// We place copper somewhere between chainmail and iron.
+import asof.colorful_ore.ColorfulOres;
 import net.minecraft.Util;
 import net.minecraft.core.Holder;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.Tags;
@@ -61,22 +63,30 @@ public class RegisterArmorItems {
     public static final Supplier<ArmorItem> COLORFUL_HELMET = ARMOR_ITEMS.register("colorful_helmet", () -> new ArmorItem(
             COLORFUL_ARMOR_MATERIAL,
             ArmorItem.Type.HELMET,
-            new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(15))
+            new Item.Properties()
+                    .durability(ArmorItem.Type.HELMET.getDurability(15))
+                    .component(DataComponents.DYED_COLOR,new DyedItemColor(ColorfulOres.defaultColor.getRGB(),false))
     ));
     public static final Supplier<ArmorItem> COLORFUL_CHESTPLATE = ARMOR_ITEMS.register("colorful_chestplate", () -> new ArmorItem(
             COLORFUL_ARMOR_MATERIAL,
             ArmorItem.Type.CHESTPLATE,
-            new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(15))
+            new Item.Properties()
+                    .durability(ArmorItem.Type.CHESTPLATE.getDurability(15))
+                    .component(DataComponents.DYED_COLOR,new DyedItemColor(ColorfulOres.defaultColor.getRGB(),false))
     ));
     public static final Supplier<ArmorItem> COLORFUL_LEGGINGS = ARMOR_ITEMS.register("colorful_leggings", () -> new ArmorItem(
             COLORFUL_ARMOR_MATERIAL,
             ArmorItem.Type.LEGGINGS,
-            new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(15))
+            new Item.Properties()
+                    .durability(ArmorItem.Type.LEGGINGS.getDurability(15))
+                    .component(DataComponents.DYED_COLOR,new DyedItemColor(ColorfulOres.defaultColor.getRGB(),false))
     ));
     public static final Supplier<ArmorItem> COLORFUL_BOOTS = ARMOR_ITEMS.register("colorful_boots", () -> new ArmorItem(
             COLORFUL_ARMOR_MATERIAL,
             ArmorItem.Type.BOOTS,
-            new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(15))
+            new Item.Properties()
+                    .durability(ArmorItem.Type.BOOTS.getDurability(15))
+                    .component(DataComponents.DYED_COLOR,new DyedItemColor(ColorfulOres.defaultColor.getRGB(),false))
     ));
 
     static {

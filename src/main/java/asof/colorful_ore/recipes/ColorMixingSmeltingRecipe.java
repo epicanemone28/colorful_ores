@@ -1,6 +1,5 @@
 package asof.colorful_ore.recipes;
 
-import asof.colorful_ore.registries.RegisterRecipeTypes;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.ItemStack;
@@ -30,7 +29,9 @@ public class ColorMixingSmeltingRecipe extends SmeltingRecipe {
 
     @Override
     public @NotNull RecipeType<?> getType() {
-        return RegisterRecipeTypes.COLOR_MIXING_SMELTING.get();
+        return RecipeType.SMELTING;
+
+        //return RegisterRecipeTypes.COLOR_MIXING_SMELTING.get();
     }
 
     @Override

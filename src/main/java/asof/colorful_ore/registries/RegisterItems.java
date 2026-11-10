@@ -8,8 +8,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
-import java.awt.*;
-
 import static asof.colorful_ore.misc_providers.ColorfulBlockTintProvider.tintableItems;
 
 public class RegisterItems {
@@ -17,11 +15,11 @@ public class RegisterItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(ColorfulOres.MODID);
 
     public static final DeferredItem<Item> RAW_COLORFUL_ORE = ITEMS.registerSimpleItem("raw_colorful_ore", new Item.Properties()
-            .component(DataComponents.DYED_COLOR, new DyedItemColor(Color.GRAY.getRGB(),false)
+        .component(DataComponents.DYED_COLOR,new DyedItemColor(ColorfulOres.defaultColor.getRGB(),false)
     ));
     public static final DeferredItem<Item> COLORFUL_INGOT = ITEMS.registerSimpleItem("colorful_ingot", new Item.Properties()
-            .component(DataComponents.DYED_COLOR, new DyedItemColor(Color.GRAY.getRGB(),false)
-            ));
+        .component(DataComponents.DYED_COLOR,new DyedItemColor(ColorfulOres.defaultColor.getRGB(),false)
+    ));
     public static final DeferredItem<Item> MIMICLAY_BALL = ITEMS.registerSimpleItem("mimiclay_ball", new Item.Properties());
 
     static {

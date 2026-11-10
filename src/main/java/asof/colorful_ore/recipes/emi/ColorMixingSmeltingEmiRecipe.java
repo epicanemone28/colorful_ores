@@ -50,6 +50,11 @@ public class ColorMixingSmeltingEmiRecipe implements EmiRecipe {
     }
 
     @Override
+    public boolean supportsRecipeTree() {
+        return true;
+    }
+
+    @Override
     public EmiRecipeCategory getCategory() {
         return VanillaEmiRecipeCategories.SMELTING;
     }
@@ -103,4 +108,6 @@ public class ColorMixingSmeltingEmiRecipe implements EmiRecipe {
         }, unique, 56,0).large(true).recipeContext(this);
 
     }
+
+
 }

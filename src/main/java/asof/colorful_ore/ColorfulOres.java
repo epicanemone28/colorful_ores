@@ -4,11 +4,7 @@ import asof.colorful_ore.blocks.ColorfulBlock;
 import asof.colorful_ore.blocks.ColorfulBlockEntity;
 import asof.colorful_ore.misc_providers.ColorfulBlockLootFunction;
 import asof.colorful_ore.misc_providers.ColorfulCreativeTab;
-import asof.colorful_ore.registries.RegisterRecipeSerializers;
-import asof.colorful_ore.registries.RegisterRecipeTypes;
-import asof.colorful_ore.registries.RegisterBlocks;
-import asof.colorful_ore.registries.RegisterItems;
-import asof.colorful_ore.registries.RegisterMiscWorldgen;
+import asof.colorful_ore.registries.*;
 import com.mojang.logging.LogUtils;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
@@ -26,11 +22,15 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import org.slf4j.Logger;
 
+import java.awt.*;
 import java.util.function.Supplier;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(ColorfulOres.MODID)
 public class ColorfulOres {
+
+    public static Color defaultColor = new Color(128, 128, 128);
+
     // Define mod id in a common place for everything to reference
     public static final String MODID = "colorful_ore";
     // Directly reference a slf4j logger

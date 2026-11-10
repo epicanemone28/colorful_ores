@@ -40,7 +40,7 @@ public class ColorfulCreativeTab {
     public static void addInAllColors(CreativeModeTab.Output output, ItemLike item) {
         for(Color color : colors){
             ItemStack coloredItem = new ItemStack(item.asItem());
-            coloredItem.set(DataComponents.DYED_COLOR, new DyedItemColor(color.getRGB(),true));
+            coloredItem.set(DataComponents.DYED_COLOR, new DyedItemColor(color.getRGB(),false));
             output.accept(coloredItem);
         }
     }

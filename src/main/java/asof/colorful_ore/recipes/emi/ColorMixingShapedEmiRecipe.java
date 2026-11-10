@@ -13,15 +13,21 @@ import net.minecraft.util.FastColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.DyedItemColor;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 
 public class ColorMixingShapedEmiRecipe extends EmiPatternCraftingRecipe {
+
+
     public ColorMixingShapedEmiRecipe(ColorMixingShapedRecipe recipe, ResourceLocation id) {
-        super(padIngredients(recipe), EmiStack.of(recipe.result), id);
+        super(padIngredients(recipe), EmiStack.of(recipe.result), id, false);
+    }
+
+    @Override
+    public boolean supportsRecipeTree() {
+        return true;
     }
 
     // this code was largely taken from emi directly.. is that fine with the MIT license?

@@ -1,8 +1,10 @@
 package asof.colorful_ore.registries;
 
 import asof.colorful_ore.ColorfulOres;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.common.SimpleTier;
@@ -39,23 +41,23 @@ public class RegisterToolItems {
     //ITEMS is a DeferredRegister<Item>
     public static final Supplier<SwordItem> COPPER_SWORD = TOOL_ITEMS.register("colorful_sword", ()->new SwordItem(
             COLORFUL_TIER,
-            new Item.Properties().attributes(SwordItem.createAttributes(COLORFUL_TIER,3.0f,-2.4f)))
+            new Item.Properties().component(DataComponents.DYED_COLOR,new DyedItemColor(ColorfulOres.defaultColor.getRGB(),false)).attributes(SwordItem.createAttributes(COLORFUL_TIER,3.0f,-2.4f)))
     );
     public static final Supplier<AxeItem> COLORFUL_AXE = TOOL_ITEMS.register("colorful_axe", ()->new AxeItem(
             COLORFUL_TIER,
-            new Item.Properties().attributes(AxeItem.createAttributes(COLORFUL_TIER,5.5f,-1.6f)))
+            new Item.Properties().component(DataComponents.DYED_COLOR,new DyedItemColor(ColorfulOres.defaultColor.getRGB(),false)).attributes(AxeItem.createAttributes(COLORFUL_TIER,5.5f,-1.6f)))
     );
     public static final Supplier<PickaxeItem> COLORFUL_PICKAXE = TOOL_ITEMS.register("colorful_pickaxe", ()->new PickaxeItem(
             COLORFUL_TIER,
-            new Item.Properties().attributes(PickaxeItem.createAttributes(COLORFUL_TIER,1.0f,-2.8f)))
+            new Item.Properties().component(DataComponents.DYED_COLOR,new DyedItemColor(ColorfulOres.defaultColor.getRGB(),false)).attributes(PickaxeItem.createAttributes(COLORFUL_TIER,1.0f,-2.8f)))
     );
     public static final Supplier<ShovelItem> COLORFUL_SHOVEL = TOOL_ITEMS.register("colorful_shovel", ()->new ShovelItem(
             COLORFUL_TIER,
-            new Item.Properties().attributes(ShovelItem.createAttributes(COLORFUL_TIER,1.5f,-3f)))
+            new Item.Properties().component(DataComponents.DYED_COLOR,new DyedItemColor(ColorfulOres.defaultColor.getRGB(),false)).attributes(ShovelItem.createAttributes(COLORFUL_TIER,1.5f,-3f)))
     );
     public static final Supplier<HoeItem> COLORFUL_HOE = TOOL_ITEMS.register("colorful_hoe", ()->new HoeItem(
             COLORFUL_TIER,
-            new Item.Properties().attributes(HoeItem.createAttributes(COLORFUL_TIER,3.5f,-2.8f)))
+            new Item.Properties().component(DataComponents.DYED_COLOR,new DyedItemColor(ColorfulOres.defaultColor.getRGB(),false)).attributes(HoeItem.createAttributes(COLORFUL_TIER,3.5f,-2.8f)))
     );
 
     static {

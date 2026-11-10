@@ -1,5 +1,6 @@
 package asof.colorful_ore.blocks;
 
+import asof.colorful_ore.ColorfulOres;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
@@ -10,13 +11,14 @@ import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
-import java.awt.*;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 import static asof.colorful_ore.ColorfulOres.COLORFUL_BLOCK_ENTITY;
 
 public class ColorfulBlockEntity extends BlockEntity {
-    public int rgb = Color.GRAY.getRGB();
+    public int rgb = ColorfulOres.defaultColor.getRGB();
 
     public ColorfulBlockEntity(BlockPos pos, BlockState state) {
         super(COLORFUL_BLOCK_ENTITY.get(),pos,state);
@@ -32,6 +34,7 @@ public class ColorfulBlockEntity extends BlockEntity {
 
     // Read values from the passed CompoundTag here.
     @Override
+    @ParametersAreNonnullByDefault
     public void loadAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.loadAdditional(tag, registries);
         // Will default to 0 if absent. See the NBT article for more information.
@@ -40,6 +43,7 @@ public class ColorfulBlockEntity extends BlockEntity {
 
     // Save values into the passed CompoundTag here.
     @Override
+    @ParametersAreNonnullByDefault
     public void saveAdditional(CompoundTag tag, HolderLookup.Provider registries) {
         super.saveAdditional(tag, registries);
         tag.putInt("rgb", this.rgb);
@@ -47,7 +51,8 @@ public class ColorfulBlockEntity extends BlockEntity {
 
     // Create an update tag here. For block entities with only a few fields, this can just call #saveAdditional.
     @Override
-    public CompoundTag getUpdateTag(HolderLookup.Provider registries) {
+    @ParametersAreNonnullByDefault
+    public @NotNull CompoundTag getUpdateTag(HolderLookup.Provider registries) {
         CompoundTag tag = new CompoundTag();
         saveAdditional(tag, registries);
         return tag;
@@ -64,6 +69,7 @@ public class ColorfulBlockEntity extends BlockEntity {
     // Optionally: Run some custom logic when the packet is received.
     // The super/default implementation forwards to #loadAdditional.
     @Override
+    @ParametersAreNonnullByDefault
     public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet, HolderLookup.Provider registries) {
         super.onDataPacket(connection, packet, registries);
         // Do whatever you need to do here.

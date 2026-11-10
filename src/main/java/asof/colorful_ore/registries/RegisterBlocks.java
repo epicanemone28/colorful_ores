@@ -2,7 +2,10 @@ package asof.colorful_ore.registries;
 
 import asof.colorful_ore.ColorfulOres;
 import asof.colorful_ore.blocks.ColorfulBlock;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item.Properties;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
@@ -38,11 +41,13 @@ public class RegisterBlocks {
             BlockBehaviour.Properties.of().mapColor(MapColor.STONE).destroyTime(2.5f).sound(SoundType.COPPER)
     );
 
-    public static final DeferredItem<BlockItem> DEEPSLATE_COLORFUL_ORE_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("deepslate_colorful_ore", DEEPSLATE_COLORFUL_ORE);
-    public static final DeferredItem<BlockItem> COLORFUL_ORE_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("colorful_ore", COLORFUL_ORE);
-    public static final DeferredItem<BlockItem> COLORFUL_PLATE_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("colorful_plate", COLORFUL_PLATE);
-    public static final DeferredItem<BlockItem> COLORFUL_STURDY_PLATE_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("colorful_sturdy_plate", COLORFUL_STURDY_PLATE);
-    public static final DeferredItem<BlockItem> COLORFUL_METAL_BLOCK_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("colorful_metal_block", COLORFUL_METAL_BLOCK);
+    public static final Properties defaultColorfulItemProps = new Properties().component(DataComponents.DYED_COLOR, new DyedItemColor(ColorfulOres.defaultColor.getRGB(),false));
+
+    public static final DeferredItem<BlockItem> DEEPSLATE_COLORFUL_ORE_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("deepslate_colorful_ore", DEEPSLATE_COLORFUL_ORE,defaultColorfulItemProps);
+    public static final DeferredItem<BlockItem> COLORFUL_ORE_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("colorful_ore", COLORFUL_ORE,defaultColorfulItemProps);
+    public static final DeferredItem<BlockItem> COLORFUL_PLATE_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("colorful_plate", COLORFUL_PLATE,defaultColorfulItemProps);
+    public static final DeferredItem<BlockItem> COLORFUL_STURDY_PLATE_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("colorful_sturdy_plate", COLORFUL_STURDY_PLATE,defaultColorfulItemProps);
+    public static final DeferredItem<BlockItem> COLORFUL_METAL_BLOCK_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("colorful_metal_block", COLORFUL_METAL_BLOCK,defaultColorfulItemProps);
     public static final DeferredItem<BlockItem> MIMICLAY_BLOCKITEM = BLOCK_ITEMS.registerSimpleBlockItem("mimiclay", MIMICLAY);
 
     static {
